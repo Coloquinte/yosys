@@ -632,6 +632,7 @@ $(eval $(call add_include_file,kernel/yosys.h))
 $(eval $(call add_include_file,kernel/yw.h))
 $(eval $(call add_include_file,libs/ezsat/ezsat.h))
 $(eval $(call add_include_file,libs/ezsat/ezminisat.h))
+$(eval $(call add_include_file,libs/ezsat/ezcommand.h))
 ifeq ($(ENABLE_ZLIB),1)
 $(eval $(call add_include_file,libs/fst/fstapi.h))
 endif
@@ -672,6 +673,7 @@ OBJS += libs/json11/json11.o
 
 OBJS += libs/ezsat/ezsat.o
 OBJS += libs/ezsat/ezminisat.o
+OBJS += libs/ezsat/ezcommand.o
 
 OBJS += libs/minisat/Options.o
 OBJS += libs/minisat/SimpSolver.o
