@@ -979,18 +979,6 @@ struct EchoPass : public Pass {
 	}
 } EchoPass;
 
-SatSolver *yosys_satsolver_list;
-SatSolver *yosys_satsolver;
-
-struct MinisatSatSolver : public SatSolver {
-	MinisatSatSolver() : SatSolver("minisat") {
-		yosys_satsolver = this;
-	}
-	ezSAT *create() override {
-		return new ezMiniSAT();
-	}
-} MinisatSatSolver;
-
 struct LicensePass : public Pass {
 	LicensePass() : Pass("license", "print license terms") { }
 	void help() override
