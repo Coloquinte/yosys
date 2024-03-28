@@ -1222,7 +1222,7 @@ ezSATvec ezSAT::vec(const std::vector<int> &vec)
 	return ezSATvec(*this, vec);
 }
 
-void ezSAT::printDIMACS(FILE *f, bool verbose) const
+void ezSAT::printDIMACS(FILE *f, bool verbose, const std::vector<std::vector<int>> &extraClauses) const
 {
 	if (cnfConsumed) {
 		fprintf(stderr, "Usage error: printDIMACS() must not be called after cnfConsumed()!");
@@ -1259,6 +1259,8 @@ void ezSAT::printDIMACS(FILE *f, bool verbose) const
 	std::vector<std::vector<int>> all_clauses;
 	getFullCnf(all_clauses);
 	assert(cnfClausesCount == int(all_clauses.size()));
+	for (auto c : extraClauses)
+		all_clauses.push_back(c);
 
 	fprintf(f, "p cnf %d %d\n", cnfVariableCount, cnfClausesCount);
 	int maxClauseLen = 0;
