@@ -19,8 +19,13 @@
 
 #include "kernel/satgen.h"
 #include "kernel/ff.h"
+#include "libs/ezsat/ezcommand.h"
+#include "libs/ezsat/ezminisat.h"
 
 USING_YOSYS_NAMESPACE
+
+ezSatPtr::ezSatPtr() : unique_ptr<ezSAT>(new ezMiniSAT()) {}
+ezSatPtr::ezSatPtr(const std::string &command) : unique_ptr<ezSAT>(new ezSATCommand(command)) {}
 
 bool SatGen::importCell(RTLIL::Cell *cell, int timestep)
 {

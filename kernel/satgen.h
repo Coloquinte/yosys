@@ -25,12 +25,13 @@
 #include "kernel/celltypes.h"
 #include "kernel/macc.h"
 
-#include "libs/ezsat/ezminisat.h"
+#include "libs/ezsat/ezsat.h"
 
 YOSYS_NAMESPACE_BEGIN
 
 struct ezSatPtr : public std::unique_ptr<ezSAT> {
-	ezSatPtr(): unique_ptr<ezSAT>(new ezMiniSAT()) {}
+	ezSatPtr();
+	ezSatPtr(const std::string &command);
 };
 
 struct SatGen
